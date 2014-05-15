@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: adventure_library_development
   pool: 5
-  host: localhost
+  #host: localhost
   port: 5432
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: adventure_library_test
   pool: 5
-  host: localhost
+  #host: localhost
   port: 5432
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: adventure_library_production
   pool: 5
-  host: localhost
+  #host: localhost
   port: 5432
