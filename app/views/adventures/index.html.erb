@@ -1,0 +1,17 @@
+<h1>Welcome to Dante's Adventure Library!</h1>
+
+<h3>Locally made adventures:</h3>
+      <ul>
+      <% @adventures.each do |adventure| %>
+        <li><%= link_to adventure.title, adventure_page_path(adventure.id, adventure.pages.find_by(name: "start")) %> <%#= adventure.title  %> by <%= adventure.author %></li>
+      <% end %>
+
+        </ul><br>
+      <%= link_to 'Add New Adenture', new_adventure_path %>
+
+<h3>Adventures from other libraries:</h3>
+
+
+
+<h3>Add your library here:</h3>
+
