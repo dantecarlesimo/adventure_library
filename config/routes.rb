@@ -1,7 +1,14 @@
 AdventureLibrary::Application.routes.draw do
+  
+  resources :libraries, only: [:index, :create]
+
   resources :adventures do
     resources :pages
   end
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
 
   root to: 'adventures#index'
   # The priority is based upon order of creation: first created -> highest priority.

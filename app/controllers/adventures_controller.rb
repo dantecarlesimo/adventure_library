@@ -1,13 +1,19 @@
 class AdventuresController < ApplicationController
-  
+  include PagesHelper
   def index
+    @library = Library.new
     @adventures = Adventure.all
+    local_adventures = Adventure.where(:library_id => nil)
+    respond_to do |f|
+      f.html
+      f.json { render :json => {"adventures"=>local_adventures.as_json(except: [:id, :library_id], include: {pages:{except: [:id, :adventure_id]}})}}
 
-    # respond_to do |f|
-    #   f.html
+      #http://localhost:3000/adventures.json
+
       # f.json { render json: {adventures: @adventures.as_json (
-                            # execpt: [:id, :library_id],
-                            # include: {:pages => {except: :id}})}}
+      #                       execpt: [:id, :library_id],
+      #                       include: {:pages => {except: :id}})}}
+    end
   end
 
   def new
@@ -20,7 +26,7 @@ class AdventuresController < ApplicationController
     # binding.pry
     # @adventurs.library_id = nil
     @adventure.save
-    redirect_to root_path
+    redirect_to new_adventure_page_path(@adventure)
   end
 
   def show

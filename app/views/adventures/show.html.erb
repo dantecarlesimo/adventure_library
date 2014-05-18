@@ -1,1 +1,6 @@
-show.html.erb
+<h1> <%= @adventure.title %> </h1>
+<h3> Author:<%= @adventure.author %> </h3>
+
+<%= simple_format(linkify_page(@page)) %><br>
+
+<%= link_to "Add a page!", new_adventure_page_path(@adventure) %>

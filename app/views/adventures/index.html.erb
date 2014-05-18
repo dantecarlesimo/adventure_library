@@ -3,7 +3,9 @@
 <h3>Locally made adventures:</h3>
       <ul>
       <% @adventures.each do |adventure| %>
+      <% if adventure.library_id.nil? %>
         <li><%= link_to adventure.title, adventure_page_path(adventure.id, adventure.pages.find_by(name: "start")) %> <%#= adventure.title  %> by <%= adventure.author %></li>
+      <% end %>
       <% end %>
 
         </ul><br>
@@ -11,7 +13,19 @@
 
 <h3>Adventures from other libraries:</h3>
 
+      <ul>
+      <% @adventures.each do |adventure| %>
+       <% if adventure.library_id %>
+        <li><%= link_to adventure.title, adventure_page_path(adventure.id, adventure.pages.find_by(name: "start")) %></li>
+        <%end%>
+      <% end %>
+
+        </ul><br>
 
 
 <h3>Add your library here:</h3>
-
+<%= form_for(@library) do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= f.submit %>  
+<% end %>

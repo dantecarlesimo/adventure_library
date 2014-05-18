@@ -1,0 +1,17 @@
+<h1> New Page for: <%= @adventure.title %> </h1>
+<h3> Past Pages </h3>
+<% @adventure.pages.each do |page| %>
+<%= page.name %><br>
+<% end %>
+<p>Note:First page must be named "start"</p>
+<%= form_for @page, :url => {:action => "create"} do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :text %>
+  <%= f.text_area :text %><br>
+  <%= f.submit %>
+
+<% end %>
+
+<p>Once you have completed your pages return to the <%= link_to 'Adventure Library', root_path %></p>
