@@ -4,9 +4,9 @@ class LibrariesController < ApplicationController
   def index
     @libraries = Library.all
     respond_to do |format|
-      @libraries.each do |library|
-        format.json { render json: {"libraries" => library.as_json(except: :id)} }
-      end
+      # @libraries.each do |library|
+        format.json { render json: {"libraries" => @libraries.as_json(except: :id)} }
+      # end
     end 
   end
 
